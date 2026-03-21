@@ -1,10 +1,33 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Web OS</title>
+        <title>WebOS</title>
+        <link rel="icon" href="icons/favicon-32x32.png">
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <div class="bootscreen">
+            <canvas id="matrix">
+
+            </canvas>
+            <h1>>_WebOS</h1>
+            <div class="loadingbar">
+                <div class="loadingfill">
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="loginscreen">
+            <h2>>_WebOS</h2>
+            <div class="avatar">
+                <img src="icons/icons8-user-90.png"/>
+            </div>
+            <p>User</p>
+            <button id="loginBtn">Login With HackClub</button>
+            <img src="https://assets.hackclub.com/flag-orpheus-top.svg" id="orpheus"/>
+        </div>
 
 
         <div class="desktop">
@@ -17,6 +40,11 @@
                     <span>Projects</span>
                 </div>
 
+                <div class="icon" id="sicon">
+                    <img src="icons/icons8-market-96.png"/>
+                    <span>Market</span>
+                </div>
+
                 <div class="icon" id="aicon">
                     <img src="icons/icons8-about-100.png"/>
                     <span>About</span>
@@ -27,16 +55,33 @@
                     <span>FAQ</span>
                 </div>
 
-
+                
             </div>
 
 
             <div class="mwindow">
                 <div class="mwindow-titlebar">
                     <span>Projects</span>
-                    <button>X</button>
+                    <div class="buttons">
+                        <button class="maxBtn">□</button>
+                        <button class="closeBtn">X</button>
+                    </div>
                 </div>
                 <div class="mwindow-content">
+                    Under Development.
+                </div>
+            </div>
+
+            <div class="swindow">
+                <div class="swindow-titlebar">
+                    <span>Market</span>
+                    <div class="buttons">
+                        <button class="maxBtn">□</button>
+                        <button class="closeBtn">X</button>
+                    </div>
+                </div>
+                <div class="swindow-content">
+                    Under Development.
                 </div>
             </div>
 
@@ -44,7 +89,10 @@
             <div class="awindow">
                 <div class="awindow-titlebar">
                     <span>About</span>
-                    <button>X</button>
+                    <div class="buttons">
+                        <button class="maxBtn">□</button>
+                        <button class="closeBtn">X</button>
+                    </div>
                 </div>
                 <div class="awindow-content">
                     <p>Welcome to WebOS!</p>
@@ -52,7 +100,7 @@
                     <p>Have you ever built an OS before? Or maybe a website?</p>
                     <p>Why Don't you build them both!</p>
                     <br>
-                    <p>Build an OS inside a website and earn disks to buy interesting things from the store.</p>
+                    <p>Build an OS inside a website and earn disks to buy interesting things from the market.</p>
                 </div>
             </div>
 
@@ -60,7 +108,10 @@
             <div class="fwindow">
                 <div class="fwindow-titlebar">
                     <span>FAQ</span>
-                    <button>X</button>
+                    <div class="buttons">
+                        <button class="maxBtn">□</button>
+                        <button class="closeBtn">X</button>
+                    </div>
                 </div>
                 <div class="fwindow-content">
                     <p>What is WebOS?</p>
@@ -69,12 +120,29 @@
                     <p>When did this start? When is the deadline?</p>
                     <p>TBD!</p>
                     <br>
+                    <p>Who can apply?</p>
+                    <p>Any HackClub member aged between 13-18. You don't need to be in a physical club, just be part of the HackClub community.</p>
+                    <br>
                     <p>How do I get started?</p>
                     <p>Start by creating a new project (in the projects folder). And start making your website, log your work, connect your hackatime with the project, and ship it for review when you are ready. </p>
                     <br>
+                    <p>What is HackClub?</p>
+                    <p>Hack Club is a 501(c)(3) nonprofit and network of 60k+ technical high schoolers. We believe you learn best by building so we're creating community and providing grants so you can make awesome projects. We run programs like these year around.</p>
                 </div>
             </div>
 
+
+            <div class="taskbar">
+                <div class="taskbarL">
+                    <img src="icons/favicon-32x32.png"/>
+                </div>
+                <div class="taskbarC">
+
+                </div>
+                <div class="taskbarR">
+                    <span id="clock"></span>
+                </div>
+            </div>
 
         </div>
 

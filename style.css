@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    cursor: url("icons/cursor.png"), auto !important;
 }
 
 body {
@@ -11,18 +12,25 @@ body {
 }
 
 .desktop {
+    display: none;
     width: 100vw;
     height: 100vh;
     position: relative;
     overflow: hidden;
-    background-color: rgb(255, 232, 187);
+    /*the background is from AI*/
+    background-color: #080010;
+    background-image: 
+        repeating-linear-gradient(0deg, rgba(180,0,40,0.07) 0px, rgba(180,0,40,0.07) 1px, transparent 1px, transparent 40px),
+        repeating-linear-gradient(90deg, rgba(180,0,40,0.07) 0px, rgba(180,0,40,0.07) 1px, transparent 1px, transparent 40px),
+        radial-gradient(ellipse at center, #2a0010 0%, #080010 80%);
+
 }
 
 .icons-grid {
     display: flex;
-    gap: 15px;
+    gap: 10px;
     flex-direction: column;
-    position: absolute;top: 20px; left: 20px;
+    position: absolute;top: 10px; left: 10px;
 }
 
 .icon {
@@ -30,11 +38,11 @@ body {
     flex-direction: column;
     align-items: center;
     border-radius: 10px;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     width: 90px;
     padding: 8px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 18px;
     user-select: none;
 }
 
@@ -51,7 +59,8 @@ body {
     position: absolute;
     width: 500px;
     height: 350px;
-    background-color: antiquewhite;
+    background-color: rgba(20, 10, 20, 0.85);
+    color: white;
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     overflow: hidden;
@@ -67,7 +76,8 @@ body {
     align-items: center;
     padding: 0 12px;
     height: 35px;
-    background-color: rgb(88, 87, 87);
+    color: white;
+    background-color: #000000;
     cursor: grab;
 }
 
@@ -95,11 +105,62 @@ body {
     overflow-y: auto;
 }
 
+.swindow {
+    position: absolute;
+    width: 500px;
+    height: 350px;
+    background-color: rgba(20, 10, 20, 0.85);
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.swindow-titlebar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12px;
+    height: 35px;
+    color: white;
+    background-color: #000000;
+    cursor: grab;
+}
+
+.swindow-titlebar button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.swindow-titlebar button:hover {
+    background-color: rgb(190, 34, 34);
+}
+
+.swindow-content {
+    padding: 16px;
+    height: calc(100% - 35px);
+    overflow-y: auto;
+}
+
 .awindow {
     position: absolute;
     width: 500px;
     height: 350px;
-    background-color: antiquewhite;
+    background-color: rgba(20, 10, 20, 0.85);
+    color: white;
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     overflow: hidden;
@@ -115,7 +176,8 @@ body {
     align-items: center;
     padding: 0 12px;
     height: 35px;
-    background-color: rgb(88, 87, 87);
+    color: white;
+    background-color: #000000;
     cursor: grab;
 }
 
@@ -147,7 +209,8 @@ body {
     position: absolute;
     width: 500px;
     height: 350px;
-    background-color: antiquewhite;
+    background-color: rgba(20, 10, 20, 0.85);
+    color: white;
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     overflow: hidden;
@@ -163,7 +226,8 @@ body {
     align-items: center;
     padding: 0 12px;
     height: 35px;
-    background-color: rgb(88, 87, 87);
+    color: white;
+    background-color: #000000;
     cursor: grab;
 }
 
@@ -189,4 +253,183 @@ body {
     padding: 16px;
     height: calc(100% - 35px);
     overflow-y: auto;
+}
+
+.taskbar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 45px;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    z-index: 1000;
+}
+
+.taskbarL {
+    display: flex;
+    align-items: center;
+}
+
+.taskbarC {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.taskbarR {
+    display: flex;
+    align-items: center;
+}
+
+#clock {
+    color: white;
+    font-size: 14px;
+}
+
+.bootscreen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #080010;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.8s ease;
+}
+
+h1 {
+    position: relative;
+    color: #cc1133;
+    font-family: monospace;
+    font-size: 48px;
+    margin-bottom: 30px;
+    z-index: 1;
+}
+
+.loadingbar {
+    position: relative;
+    width: 300px;
+    height: 4px;
+    background-color: #333;
+    border-radius: 2px;
+    z-index: 1;
+}
+
+.loadingfill {
+    width: 0%;
+    height: 100%;
+    background-color: #cc1133;
+    border-radius: 2px;
+    transition: width 2.5s ease;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.loginscreen {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #080010;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9998;
+    gap: 20px;
+    transition: opacity 0.8s ease;
+}
+
+.loginscreen h2{
+    color: #cc1133;
+    font-family: monospace;
+    font-size: 32px;
+}
+
+.loginscreen p{
+    color: white;
+    font-family: monospace;
+    font-size: 18px;
+}
+
+#loginBtn {
+    background-color: #cc1133;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: monospace;
+}
+
+#loginBtn:hover {
+    background-color: #ff1144;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #cc1133;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+}
+
+.avatar img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+#orpheus {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    z-index: 500;
+}
+
+.maxBtn:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.mwindow, .swindow, .awindow, .fwindow {
+    backdrop-filter: blur(10px);
+}
+
+.mwindow-titlebar, .swindow-titlebar, .awindow-titlebar, .fwindow-titlebar {
+    border-bottom: 1px solid rgba(59, 55, 117, 0.5);
+}
+
+.indicator {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    gap: 8px;
+}
+
+.indicator img {
+    width: 20px;
+    height: 20px;
 }
