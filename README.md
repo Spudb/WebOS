@@ -13,3 +13,5 @@
     * **Market:** A store to buy different available hardware and rewards that can be purchased using earned "disks".
     * **About & FAQ:** windows explaining the program.
 * **Wallpaper Customization:** Users can personalize their desktop by choosing from minimal CSS-gradient presets or by using a drag-and-drop file uploader to set custom image wallpapers. It can be found when clicking the icon in the taskbar.
+
+Note: the AI was used in this project, only as a guidance (like you are telling him to make you a tutorial). And it was not used to copy and paste codes.
