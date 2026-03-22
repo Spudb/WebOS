@@ -135,6 +135,16 @@ function windowBhvr(win, titlebar, maxBtn) {
 
     /*To make the windows able to be dragged*/
     titlebar.addEventListener("mousedown", function(event) {
+        if(event.target.tagName === "BUTTON") return
+        if(isMaximized == true){
+            win.style.width = "500px"
+            win.style.height = "350px"
+            win.style.left = event.clientX - 250 + "px"
+            win.style.top = event.clientY - 17 + "px"
+            win.style.borderRadius = "8px"
+            maxBtn.innerText = "□"
+            isMaximized = false
+        }
         isDragging = true
         offsetX = event.clientX - win.offsetLeft
         offsetY = event.clientY - win.offsetTop

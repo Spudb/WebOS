@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Vend+Sans:ital,wght@0,300..700;1,300..700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -17,6 +19,7 @@ body {
     height: 100vh;
     position: relative;
     overflow: hidden;
+    font-family: Vend Sans;
     /*the background is from AI*/
     background-color: #080010;
     background-image: 
@@ -432,4 +435,26 @@ canvas {
 .indicator img {
     width: 20px;
     height: 20px;
+}
+
+.mwindow-content::-webkit-scrollbar, .swindow-content::-webkit-scrollbar, .awindow-content::-webkit-scrollbar, .fwindow-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.mwindow-content::-webkit-scrollbar-track, .swindow-content::-webkit-scrollbar-track, .awindow-content::-webkit-scrollbar-track, .fwindow-content::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.2);
+}
+
+.mwindow-content::-webkit-scrollbar-thumb, .swindow-content::-webkit-scrollbar-thumb, .awindow-content::-webkit-scrollbar-thumb, .fwindow-content::-webkit-scrollbar-thumb {
+    background: #cc1133;
+    border-radius: 3px;
+}
+
+.mwindow-content::-webkit-scrollbar-thumb:hover, .swindow-content::-webkit-scrollbar-thumb:hover, .awindow-content::-webkit-scrollbar-thumb:hover, .fwindow-content::-webkit-scrollbar-thumb:hover {
+    background: #ff1144;
+}
+
+.mwindow-content, .swindow-content, .awindow-content, .fwindow-content {
+    scrollbar-width: thin;
+    scrollbar-color: #cc1133 rgba(0,0,0,0.2);
 }
