@@ -1,37 +1,57 @@
-const picon = document.getElementById("picon")
-const sicon = document.getElementById("sicon")
-const aicon = document.getElementById("aicon")
-const ficon = document.getElementById("ficon")
+const picon = document.getElementById("picon");
+const sicon = document.getElementById("sicon");
+const aicon = document.getElementById("aicon");
+const ficon = document.getElementById("ficon");
+const wicon = document.getElementById("wicon");
 const mwindow = document.querySelector(".mwindow");
 const swindow = document.querySelector(".swindow");
 const awindow = document.querySelector(".awindow");
 const fwindow = document.querySelector(".fwindow");
+const wwindow = document.querySelector(".wwindow");
 const mcloseBtn = document.querySelector(".mwindow .closeBtn");
 const scloseBtn = document.querySelector(".swindow .closeBtn");
 const acloseBtn = document.querySelector(".awindow .closeBtn");
 const fcloseBtn = document.querySelector(".fwindow .closeBtn");
+const wcloseBtn = document.querySelector(".wwindow .closeBtn");
 const mwindowT = document.querySelector(".mwindow-titlebar");
 const swindowT = document.querySelector(".swindow-titlebar");
 const awindowT = document.querySelector(".awindow-titlebar");
 const fwindowT = document.querySelector(".fwindow-titlebar");
-const canvas = document.getElementById("matrix")
+const wwindowT = document.querySelector(".wwindow-titlebar");
+const canvas = document.getElementById("matrix");
+
 var ctx = canvas.getContext("2d")
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
 var fontS = 14
 var columns = Math.floor(canvas.width / fontS)
 var drops = Array(columns).fill(1)
-var clock = document.getElementById("clock");
+var clock = document.getElementById("clock")
 var bootscreen = document.querySelector(".bootscreen")
 var loadingfill = document.querySelector(".loadingfill")
 var loginscreen = document.querySelector(".loginscreen")
 var loginBtn = document.getElementById("loginBtn")
 var desktop = document.querySelector(".desktop")
-var allWindows = [mwindow, swindow, awindow, fwindow]
+var allWindows = [mwindow, swindow, awindow, fwindow, wwindow]
 var taskbarC = document.querySelector(".taskbarC")
 var pCanvas = document.getElementById("particles")
 var pCtx = pCanvas.getContext("2d")
 var particles = []
+var presets = document.querySelectorAll(".preset")
+var savedPresets = JSON.parse(localStorage.getItem("customPresets") || "[]")
+
+var dropzone = document.querySelector(".dropzone")
+var wallpaperupload = document.getElementById("wallpaperUpload")
+var savedWallpaper = localStorage.getItem("wallpaper")
+var savedPresets = JSON.parse(localStorage.getItem("customPresets") || "[]")
+for(var i = 0; i < savedPresets.length; i++){
+    addCustomPreset(savedPresets[i])
+}
+var savedIsImage = localStorage.getItem("wallpaperIsImage") === "true"
+if(savedWallpaper){
+
+}
+
 
 picon.addEventListener("click", function(){mwindow.style.display = "block", focusWindow(mwindow), addIndicator("Projects", mwindow, "icons/icons8-folder-96.png")});
 mcloseBtn.addEventListener("click", function(){mwindow.style.display = "none", removeIndicator("Projects")});
@@ -45,7 +65,15 @@ acloseBtn.addEventListener("click", function(){awindow.style.display = "none", r
 ficon.addEventListener("click", function(){fwindow.style.display = "block", focusWindow(fwindow), addIndicator("FAQ", fwindow, "icons/icons8-notepad-96.png")});
 fcloseBtn.addEventListener("click", function(){fwindow.style.display = "none", removeIndicator("FAQ")});
 
-loginBtn.addEventListener("click", function(){loginscreen.style.opacity = "0", desktop.style.display = "block", setTimeout(function(){loginscreen.style.display = "none"}, 800)});
+wicon.addEventListener("click", function(){wwindow.style.display = "block", focusWindow(wwindow)});
+wcloseBtn.addEventListener("click", function(){wwindow.style.display = "none"});
+
+loginBtn.addEventListener("click", function(){
+    loginscreen.style.opacity = "0"
+    desktop.style.display = "block"
+    if(savedWallpaper){ setwallpaper(savedWallpaper, savedIsImage)}
+    setTimeout(function(){loginscreen.style.display = "none"}, 800)
+});
 
 function updateClock() {
     var now = new Date()
@@ -109,6 +137,7 @@ mwindow.addEventListener("mousedown", function(){focusWindow(mwindow)})
 swindow.addEventListener("mousedown", function(){focusWindow(swindow)})
 awindow.addEventListener("mousedown", function(){focusWindow(awindow)})
 fwindow.addEventListener("mousedown", function(){focusWindow(fwindow)})
+wwindow.addEventListener("mousedown", function(){focusWindow(wwindow)})
 
 function windowBhvr(win, titlebar, maxBtn) {
     var isDragging = false
@@ -169,6 +198,7 @@ windowBhvr(mwindow, mwindowT, document.querySelector(".mwindow .maxBtn"))
 windowBhvr(swindow, swindowT, document.querySelector(".swindow .maxBtn"))
 windowBhvr(awindow, awindowT, document.querySelector(".awindow .maxBtn"))
 windowBhvr(fwindow, fwindowT, document.querySelector(".fwindow .maxBtn"))
+windowBhvr(wwindow, wwindowT, document.querySelector(".wwindow .maxBtn"))
 
 function addIndicator(name, win, iconSrc){
     if(document.getElementById(name + "-indicator")) return
@@ -221,3 +251,82 @@ function drawParticles(){
 
 setInterval(drawParticles, 30)
 /* The end of the visuals */
+
+function setwallpaper(value, isImage) {
+    if (isImage == true) {
+        desktop.style.backgroundImage = "url(" + value + ")"
+        desktop.style.backgroundSize = "cover"
+        desktop.style.backgroundPosition = "center"
+    }
+    if (isImage == false) {
+        if(value.startsWith("#") || value.startsWith("rgb")){
+            desktop.style.backgroundColor = value
+            desktop.style.backgroundImage = "none"
+        } else{
+            desktop.style.backgroundImage = value
+            desktop.style.backgroundColor = ""
+        }
+    }
+    localStorage.setItem("wallpaper", value)
+    localStorage.setItem("wallpaperIsImage", isImage)
+}
+
+for(var i = 0; i < presets.length; i++) {
+    presets[i].addEventListener("click", function(){
+        setwallpaper(this.style.background, false)
+    })
+}
+
+dropzone.addEventListener("click", function(){
+    wallpaperupload.click()
+})
+dropzone.addEventListener("dragover", function(event){
+    event.preventDefault()
+})
+dropzone.addEventListener("drop", function(event){
+    event.preventDefault()
+    var file = event.dataTransfer.files[0]
+    var reader = new FileReader()
+    reader.onload = function(e) {
+        setwallpaper(e.target.result, true)
+        addCustomPreset(e.target.result)
+    }
+    reader.readAsDataURL(file)
+})
+
+wallpaperupload.addEventListener("change", function(){
+    var file = wallpaperupload.files[0]
+    var reader = new FileReader()
+    reader.onload = function(e){
+        setwallpaper(e.target.result, true)
+        addCustomPreset(e.target.result)
+    }
+    reader.readAsDataURL(file)
+})
+
+function addCustomPreset(imageUrl){
+    var newPreset = document.createElement("div")
+    var deleteBtn = document.createElement("button")
+    deleteBtn.innerText = "✕"
+    deleteBtn.className = "preset-delete"
+    deleteBtn.addEventListener("click", function(event){
+        event.stopPropagation()
+        var savedPresets = JSON.parse(localStorage.getItem("customPresets") || "[]")
+        savedPresets = savedPresets.filter(function(p){return p !== imageUrl})
+        localStorage.setItem("customPresets", JSON.stringify(savedPresets))
+        newPreset.remove()
+        newPreset.appendChild(deleteBtn)
+    })
+
+    newPreset.className = "preset"
+    newPreset.style.backgroundImage = "url(" + imageUrl + ")"
+    newPreset.style.backgroundSize = "cover"
+    newPreset.style.backgroundPosition = "center"
+    newPreset.addEventListener("click", function(){
+        setwallpaper(imageUrl, true)
+    })
+    document.querySelector(".wallpaper-presets").appendChild(newPreset)
+}
+
+savedPresets.push(imageUrl)
+localStorage.setItem("customPresets", JSON.stringify(savedPresets))

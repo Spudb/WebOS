@@ -26,7 +26,7 @@
                 <img src="icons/icons8-user-90.png"/>
             </div>
             <p>User</p>
-            <button id="loginBtn">Login With HackClub</button>
+            <button id="loginBtn">Login as a guest</button>
             <img src="https://assets.hackclub.com/flag-orpheus-top.svg" id="orpheus"/>
         </div>
 
@@ -172,9 +172,40 @@
             </div>
 
 
+            <div class="wwindow">
+                <div class="wwindow-titlebar">
+                    <span>Wallpaper</span>
+                    <div class="buttons">
+                        <button class="maxBtn">□</button>
+                        <button class="closeBtn">X</button>
+                    </div>
+                </div>
+                <div class="wwindow-content">
+                    <strong>Presets</strong>
+                    <div class="wallpaper-presets">
+                        <div class="preset" style="background: linear-gradient(to bottom right, #2a0010, #080010)"></div>
+                        <div class="preset" style="background: linear-gradient(to bottom right, #0f0c29, #302b63)"></div>
+                        <div class="preset" style="background: linear-gradient(to bottom right, #0f2027, #203a43)"></div>
+                        <div class="preset" style="background: linear-gradient(to bottom right, #3d0000, #cc1133)"></div>
+                        <div class="preset" style="background: #000000"></div>
+                        <div class="preset" style="background-color: #080010;
+                            repeating-linear-gradient(0deg, rgba(180,0,40,0.07) 0px, rgba(180,0,40,0.07) 1px, transparent 1px, transparent 40px),
+                            repeating-linear-gradient(90deg, rgba(180,0,40,0.07) 0px, rgba(180,0,40,0.07) 1px, transparent 1px, transparent 40px),
+                            radial-gradient(ellipse at center, #2a0010 0%, #080010 80%);"></div>
+                    </div>
+                    <br>
+                    <strong>Custom</strong>
+                    <div class="dropzone">
+                        <p>Drag and drop an image here or click to upload</p>
+                        <input type="file" id="wallpaperUpload" accept="image/*">
+                    </div>
+                </div>
+            </div>
+
+
             <div class="taskbar">
                 <div class="taskbarL">
-                    <img src="icons/favicon-32x32.png"/>
+                    <img src="icons/favicon-32x32.png" id="wicon"/>
                 </div>
                 <div class="taskbarC">
 
