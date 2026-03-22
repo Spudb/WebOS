@@ -29,6 +29,9 @@ var loginBtn = document.getElementById("loginBtn")
 var desktop = document.querySelector(".desktop")
 var allWindows = [mwindow, swindow, awindow, fwindow]
 var taskbarC = document.querySelector(".taskbarC")
+var pCanvas = document.getElementById("particles")
+var pCtx = pCanvas.getContext("2d")
+var particles = []
 
 picon.addEventListener("click", function(){mwindow.style.display = "block", focusWindow(mwindow), addIndicator("Projects", mwindow, "icons/icons8-folder-96.png")});
 mcloseBtn.addEventListener("click", function(){mwindow.style.display = "none", removeIndicator("Projects")});
@@ -185,3 +188,36 @@ function removeIndicator(name){
     var indicator = document.getElementById(name + "-indicator")
     indicator.remove()
 }
+
+pCanvas.width = window.innerWidth
+pCanvas.height = window.innerHeight
+/* Some visuals in the login screen that I got the tutorial to make them from AI */
+for(var i = 0; i < 80; i++) {
+    particles.push({
+        x: Math.random() * pCanvas.width,
+        y: Math.random() * pCanvas.height,
+        size: Math.random() * 3 + 1,
+        speed: Math.random() * 0.5 + 0.2,
+        opacity: Math.random()
+    })
+}
+
+function drawParticles(){
+    pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height)
+    for(var i = 0; i < particles.length; i++) {
+        var p = particles[i]
+        pCtx.globalAlpha = p.opacity
+        pCtx.fillStyle = "#cc1133"
+        pCtx.beginPath()
+        pCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
+        pCtx.fill()
+        p.y -= p.speed
+        if(p.y < 0){
+        p.y = pCanvas.height
+    }
+}
+    pCtx.globalAlpha = 1
+}
+
+setInterval(drawParticles, 30)
+/* The end of the visuals */

@@ -353,18 +353,24 @@ canvas {
 }
 
 .loginscreen h2{
+    position: relative;
+    z-index: 1;
     color: #cc1133;
     font-family: monospace;
     font-size: 32px;
 }
 
 .loginscreen p{
+    position: relative;
+    z-index: 1;
     color: white;
     font-family: monospace;
     font-size: 18px;
 }
 
 #loginBtn {
+    position: relative;
+    z-index: 1;
     background-color: #cc1133;
     color: white;
     border: none;
@@ -380,6 +386,8 @@ canvas {
 }
 
 .avatar {
+    position: relative;
+    z-index: 1;
     width: 80px;
     height: 80px;
     border-radius: 50%;
@@ -397,6 +405,8 @@ canvas {
 }
 
 #orpheus {
+    position: relative;
+    z-index: 1;
     position: absolute;
     top: 0;
     right: 0;
@@ -457,4 +467,63 @@ canvas {
 .mwindow-content, .swindow-content, .awindow-content, .fwindow-content {
     scrollbar-width: thin;
     scrollbar-color: #cc1133 rgba(0,0,0,0.2);
+}
+
+.disk-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background-color: rgba(204, 17, 51, 0.15);
+    border-radius: 6px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    border: 1px solid rgba(204, 17, 51, 0.3);
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+}
+
+.product {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.product img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.product button {
+background-color: #cc1133;
+color: white;
+border: none;
+padding: 6px 16px;
+border-radius: 4px;
+width: 100%;
+font-size: 13px;
+}
+
+.product button:hover {
+    background-color: #ff1144;
+}
+
+#particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
 }
