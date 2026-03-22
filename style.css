@@ -527,3 +527,7 @@ font-size: 13px;
     width: 100%;
     height: 100%;
 }
+
+.mwindow-content::-webkit-scrollbar, .swindow-content::-webkit-scrollbar, .awindow-content::-webkit-scrollbar, .fwindow-content::-webkit-scrollbar {
+    cursor: url("icons/cursor.png"), auto !important
+}
